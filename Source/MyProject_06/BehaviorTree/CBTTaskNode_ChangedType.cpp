@@ -29,23 +29,19 @@ EBTNodeResult::Type UCBTTaskNode_ChangedType::ExecuteTask(UBehaviorTreeComponent
 
 	float targetDistance = target->GetDistanceTo(boss);
 
-	if (!aiState->IsBossApproachMode())
+	if (targetDistance <= 700)
 	{
-		aiState->SetBossApproachMode();
-
+		controller->GetBlackboardComponent()->SetValueAsEnum(aiState->AIStateBossType, FMath::RandRange(3, (uint8)EAIStateBossType::Max - 6));
 		FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
-
 	}
 
-	else
+	else if (targetDistance > 710 && targetDistance <= 1500)
 	{
-		controller->GetBlackboardComponent()->SetValueAsEnum(aiState->AIStateBossType, FMath::RandRange(3, (uint8)EAIStateBossType::Max - 5));
-		//aiState->SetBossAttackMode();
+		controller->GetBlackboardComponent()->SetValueAsEnum(aiState->AIStateBossType, FMath::RandRange(5, (uint8)EAIStateBossType::Max - 3));
 		FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
-
 	}
 
-	return EBTNodeResult::Succeeded;
+	return EBTNodeResult::InProgress;
 }
 
 void UCBTTaskNode_ChangedType::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
@@ -56,9 +52,9 @@ void UCBTTaskNode_ChangedType::TickTask(UBehaviorTreeComponent& OwnerComp, uint8
 
 }
 
-EBTNodeResult::Type UCBTTaskNode_ChangedType::AbortTask(UBehaviorTreeComponent& Owner0Comp, uint8* NodeMemory)
+EBTNodeResult::Type UCBTTaskNode_ChangedType::AbortTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	Super::AbortTask(Owner0Comp, NodeMemory);
+	Super::AbortTask(OwnerComp, NodeMemory);
 
 	return EBTNodeResult::Succeeded;
 

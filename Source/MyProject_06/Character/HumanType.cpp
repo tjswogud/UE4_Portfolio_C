@@ -56,9 +56,9 @@ void AHumanType::Tick(float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 
 	switch (Status->GetPlaceType()) {
-	case EPlaceType::OnGround: break;
+	case EPlaceType::OnGround: 
+		break;
 	case EPlaceType::OnLand: 
-		
 		break;
 	case EPlaceType::OnWall: 
 		GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_Flying);
@@ -196,8 +196,6 @@ void AHumanType::Landed(const FHitResult& Hit)
 		}
 		else if(Status->GetPlaceType() == EPlaceType::InAir && State->IsActionMode())
 		{
-
-
 			
 		}
 		else if (Status->GetPlaceType() == EPlaceType::InAir && State->IsHideMode())
@@ -206,7 +204,6 @@ void AHumanType::Landed(const FHitResult& Hit)
 		}
 
 		Status->SetPlaceType(EPlaceType::OnLand);
-
 	}
 }
 
@@ -245,7 +242,6 @@ void AHumanType::BeginPlay()
 {
 	Super::BeginPlay();
 
-	Movement->SetSpeed(ESpeedType::Run);
 	Movement->DisableControlRotation();
 
 	//State->OnStateTypeChanged.AddDynamic(this, &AHumanType::OnStateTypeChanged);
@@ -424,7 +420,6 @@ void AHumanType::End_Jump()
 void AHumanType::End_Groggy()
 {
 	SetEndState();
-
 
 	if(Status->CheckGroggy())
 	{

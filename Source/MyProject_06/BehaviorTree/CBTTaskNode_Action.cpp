@@ -11,7 +11,7 @@ UCBTTaskNode_Action::UCBTTaskNode_Action()
 	NodeName = "Action";
 
 	bNotifyTick = true;
-
+	
 }
 
 EBTNodeResult::Type UCBTTaskNode_Action::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
@@ -29,7 +29,6 @@ EBTNodeResult::Type UCBTTaskNode_Action::ExecuteTask(UBehaviorTreeComponent& Own
 	weapon->DoAction();
 
 	return EBTNodeResult::InProgress;
-
 }
 
 void UCBTTaskNode_Action::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
@@ -41,6 +40,8 @@ void UCBTTaskNode_Action::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* Nod
 
 	UCWeaponComponent* weapon = CHelpers::GetComponent<UCWeaponComponent>(ai);
 	UCStateComponent* state = CHelpers::GetComponent<UCStateComponent>(ai);
+
+	FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 
 	bool bCheck = true;
 	bCheck &= (state->IsIdleMode()); // &= 둘다 참이라는 의미

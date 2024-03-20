@@ -33,6 +33,7 @@ void ACBoss_AI::BeginPlay()
 void ACBoss_AI::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
 }
 
 void ACBoss_AI::UpdateLabelRenderScale()

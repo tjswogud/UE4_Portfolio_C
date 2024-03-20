@@ -115,14 +115,10 @@ void UCMovementComponent::OnMoveForward(float InAxis)
 	FVector direction = FQuat(rotator).GetForwardVector();
 
 	OwnerCharacter->AddMovementInput(direction, InAxis);
-
-
 }
 
 void UCMovementComponent::OnMoveRight(float InAxis)
 {
-
-
 	if (InAxis > 0.0f)
 	{
 		OwnerCharacter->Direction = EMoveDirection::Right;

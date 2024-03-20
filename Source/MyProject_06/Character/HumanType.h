@@ -51,6 +51,7 @@ protected:
 
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Widgets")
 		UWidgetComponent* HealthBar;
+
 public:
 	UPROPERTY()
 		bool IsBlocking = false;

@@ -3,9 +3,10 @@
 #include "CPatrolPath.h"
 #include "Components/SplineComponent.h"
 #include "Component/CAIBehaviorComponent.h"
-#include "Character/CEnemy_AI.h"
+#include "Character/HumanType.h"
 #include "Character/CAIController.h"
 #include "NavigationSystem.h"
+#include "Character/CEnemy_AI.h"
 
 UCBTTaskNode_Patrol::UCBTTaskNode_Patrol()
 {
@@ -28,8 +29,8 @@ EBTNodeResult::Type UCBTTaskNode_Patrol::ExecuteTask(UBehaviorTreeComponent& Own
 		FVector moveToPoint = ai->GetPatrolPath()->GetMoveTo();
 		behavior->SetPatrolLocation(moveToPoint);
 
-		if (bDebugMode)
-			DrawDebugSphere(ai->GetWorld(), moveToPoint, 25, 25, FColor::Green, true, 5);
+		//if (bDebugMode)
+		//	DrawDebugSphere(ai->GetWorld(), moveToPoint, 25, 25, FColor::Green, true, 5);
 
 		return EBTNodeResult::InProgress;
 	}
@@ -50,8 +51,8 @@ EBTNodeResult::Type UCBTTaskNode_Patrol::ExecuteTask(UBehaviorTreeComponent& Own
 
 	behavior->SetPatrolLocation(point.Location);
 
-	if (bDebugMode)
-		DrawDebugSphere(ai->GetWorld(), point.Location, 25, 25, FColor::Green, true, 5);
+	/*if (bDebugMode)
+		DrawDebugSphere(ai->GetWorld(), point.Location, 25, 25, FColor::Green, true, 5);*/
 
 	return EBTNodeResult::InProgress; // ´ë±â
 }

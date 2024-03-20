@@ -42,7 +42,6 @@ void UCAN_EndState::Notify(USkeletalMeshComponent * MeshComp, UAnimSequenceBase 
 		case EStateType::Jump: character->End_Jump();	break;
 		case EStateType::RopeAction: 
 			Cast<ACPlayer>(character)->End_RopeAction();
-
 		break;
 		default: ;
 	}

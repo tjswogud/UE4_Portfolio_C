@@ -33,7 +33,6 @@ void UCWeaponComponent::HiddenAttachment(bool IsHidden)
 				data->GetAttachment()->SetActorHiddenInGame(false);
 		}
 	}
-
 }
 
 UCWeaponComponent::UCWeaponComponent()
@@ -81,7 +80,6 @@ ACAttachment* UCWeaponComponent::GetAttachment()
 	CheckFalseResult(!!Datas[(int32)Type], nullptr);
 
 	return Datas[(int32)Type]->GetAttachment();
-	
 }
 
 UCEquipment* UCWeaponComponent::GetEquipment()
@@ -98,7 +96,6 @@ UCDoAction* UCWeaponComponent::GetDoAction()
 	CheckFalseResult(!!Datas[(int32)Type], nullptr);
 
 	return Datas[(int32)Type]->GetDoAction();
-
 }
 
 UCSubAction* UCWeaponComponent::GetSubAction()

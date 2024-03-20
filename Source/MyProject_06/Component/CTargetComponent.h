@@ -4,7 +4,6 @@
 #include "Components/ActorComponent.h"
 #include "CTargetComponent.generated.h"
 
-
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class MYPROJECT_06_API UCTargetComponent : public UActorComponent
 {

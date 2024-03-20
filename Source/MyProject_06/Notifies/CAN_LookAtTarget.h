@@ -13,16 +13,12 @@ class MYPROJECT_06_API UCAN_LookAtTarget : public UAnimNotify
 public:
 	UPROPERTY(EditAnywhere)
 		bool bUsePitchAndRoll = false;
-	
-
 
 private:
 	FString GetNotifyName_Implementation() const override;
 
 	virtual void Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation) override;
 
-
-	
 private:
 	FName TargetName;
 

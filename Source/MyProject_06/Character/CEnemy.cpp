@@ -17,7 +17,7 @@ void ACEnemy::BeginPlay()
 {
 	Super::BeginPlay();
 
-	Movement->OnWalk();
+	//Movement->OnRun();
 
 	Create_DynamicMaterial(this);
 	Change_Color(this, OriginColor);

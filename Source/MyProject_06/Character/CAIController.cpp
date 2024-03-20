@@ -64,12 +64,25 @@ void ACAIController::OnPerceptionUpdated(const TArray<AActor*>& UpdatedActors)
 	TArray<AActor*> actors;
 	Perception->GetCurrentlyPerceivedActors(nullptr, actors);
 
-	if (actors.Num() > 0)
+	/*if (actors.Num() > 0)
 	{
 		Blackboard->SetValueAsObject("Target", actors[0]);
 
 		return;
+	}*/
+
+	if (actors.Num() > 0)
+	{
+		AHumanType* target = Cast<AHumanType>(actors[0]);
+
+		if (CHelpers::IsSameTeam(Enemy, target) == false)
+		{
+			// 타겟 지정하는거
+			Blackboard->SetValueAsObject("Target", target);
+
+			return;
+		}
 	}
 
-	Blackboard->SetValueAsObject("Target", nullptr);
+	//Blackboard->SetValueAsObject("Target", nullptr);
 }

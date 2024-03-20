@@ -64,7 +64,7 @@ ACPlayer::ACPlayer() : AHumanType()
 	GetCharacterMovement()->RotationRate = FRotator(0, 720, 0);
 
 	HealthBar->SetVisibility(false);
-	GroggyBar->SetVisibility(false);
+	//GroggyBar->SetVisibility(false);
 }
 
 void ACPlayer::BeginPlay()
@@ -93,7 +93,7 @@ void ACPlayer::Tick(float DeltaSeconds)
 		}
 	}
 
-	if(Status->CurGroggy > 0)
+	/*if(Status->CurGroggy > 0)
 	{
 		GroggyBar->GetWidget()->AddToViewport();
 	}
@@ -109,7 +109,7 @@ void ACPlayer::Tick(float DeltaSeconds)
 	else if(Status->CurGroggy > 0 && State->IsActionMode())
 	{
 		Status->CurGroggy = Status->CurGroggy - 5 * DeltaSeconds;
-	}
+	}*/
 
 	FHitResult HitResult;
 	Landed(HitResult);
@@ -253,18 +253,8 @@ void ACPlayer::Hitted()
 	{
 		FHitData* data = Damage.Event->HitData;
 
-		if (Status->IsGroggy() && !Status->CheckGroggy())
-		{
-
-			Status->ToggleGroggy();
-			State->SetGroggyMode();
-		}
-		else
-		{
-			data->PlayMontage(this);
-			data->PlayHitStop(GetWorld());
-
-		}
+		data->PlayMontage(this);
+		data->PlayHitStop(GetWorld());
 
 		data->PlaySoundWave(this);
 		data->PlayEffect(GetWorld(), GetActorLocation(), GetActorRotation());
@@ -298,14 +288,7 @@ void ACPlayer::End_Hitted()
 {
 	Super::End_Hitted();
 
-	if (Status->CheckGroggy())
-	{
-		State->SetGroggyMode();
-	}
-	else
-	{
-		State->SetIdleMode();
-	}
+	State->SetIdleMode();
 }
 
 void ACPlayer::End_Dodge()

@@ -68,17 +68,17 @@ void UCANS_RangeCollision::NotifyTick(USkeletalMeshComponent* MeshComp, UAnimSeq
         TraceParams
     );;
 
-    DrawDebugSphere(
+   /* DrawDebugSphere(
 		Owner->GetWorld(),
         StartLocation,
         Radius,
         12,
         FColor::Red,
         false,
-        5.0f,
+        0.0f,
         0,
         1.0f
-    );
+    );*/
 
 
     if (bHit)

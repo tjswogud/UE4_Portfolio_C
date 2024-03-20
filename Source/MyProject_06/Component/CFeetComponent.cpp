@@ -52,19 +52,16 @@ void UCFeetComponent::Trace(FName InName, float& OutDistance, FRotator& OutRotat
 	z = start.Z - OwnerCharacter->GetCapsuleComponent()->GetScaledCapsuleHalfHeight() - TraceDistance;
 	FVector end = FVector(socket.X, socket.Y, z);
 
-
 	TArray<AActor*> ignores;
 	ignores.Add(OwnerCharacter);
 
 	FHitResult hitResult;
 	UKismetSystemLibrary::LineTraceSingle(GetWorld(), start, end, ETraceTypeQuery::TraceTypeQuery1, true, ignores, DrawDebug, hitResult, true, FLinearColor::Green, FLinearColor::Red);
 
-
 	OutDistance = 0;
 	OutRotation = FRotator::ZeroRotator;
 
 	CheckFalse(hitResult.bBlockingHit);
-
 
 	float length = (hitResult.ImpactPoint - hitResult.TraceEnd).Size();
 	OutDistance = length + OffsetDistance - TraceDistance;

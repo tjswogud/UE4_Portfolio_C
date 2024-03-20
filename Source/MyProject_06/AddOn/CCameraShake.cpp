@@ -1,5 +1,10 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "AddOn/CCameraShake.h"
+#include "Global.h"
 
+void UCCameraShake::ModifyCamera(float DeltaTime, FVector ViewLocation, FRotator ViewRotation, float FOV, FVector& NewViewLocation, FRotator& NewViewRotation, float& NewFOV)
+{
+	Super::ModifyCamera(DeltaTime, ViewLocation, ViewRotation, FOV, NewViewLocation, NewViewRotation, NewFOV);
+
+	NewViewLocation = Location;
+	NewViewRotation = Rotation;
+}

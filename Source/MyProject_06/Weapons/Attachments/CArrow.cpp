@@ -83,7 +83,7 @@ void ACArrow::RangeAttack()
 	TArray<TEnumAsByte<EObjectTypeQuery>> objects;
 	objects.Add(EObjectTypeQuery::ObjectTypeQuery3);
 
-	if (UKismetSystemLibrary::SphereTraceMultiForObjects(GetWorld(), Capsule->GetComponentLocation(), Capsule->GetComponentLocation(), RangeRadius, objects, false, Ignores, EDrawDebugTrace::ForDuration, HitResults, true))
+	if (UKismetSystemLibrary::SphereTraceMultiForObjects(GetWorld(), Capsule->GetComponentLocation(), Capsule->GetComponentLocation(), RangeRadius, objects, false, Ignores, EDrawDebugTrace::None, HitResults, true))
 	{
 		for (FHitResult result : HitResults)
 		{

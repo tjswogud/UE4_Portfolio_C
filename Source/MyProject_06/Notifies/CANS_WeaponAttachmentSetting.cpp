@@ -82,8 +82,7 @@ void UCANS_WeaponAttachmentSetting::NotifyEnd(USkeletalMeshComponent* MeshComp, 
 	}
 }
 
-void UCANS_WeaponAttachmentSetting::NotifyTick(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation,
-	float FrameDeltaTime)
+void UCANS_WeaponAttachmentSetting::NotifyTick(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float FrameDeltaTime)
 {
 	Super::NotifyTick(MeshComp, Animation, FrameDeltaTime);
 }

@@ -67,7 +67,6 @@ EBTNodeResult::Type UCBTTaskNode_Equip::AbortTask(UBehaviorTreeComponent& OwnerC
 	if (weapon == nullptr)
 		return EBTNodeResult::Failed;
 
-
 	bool bBeginEquip = weapon->GetEquipment()->GetBeginEquip();
 	if (bBeginEquip == false)
 		weapon->GetEquipment()->Begin_Equip();

@@ -23,29 +23,9 @@ void UCAN_CameraShake::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBas
 	APlayerController* controller = Character->GetController<APlayerController>();
 	CheckNull(controller);
 
-
-	/*CS = NewObject<UMatineeCameraShake>();
-
-	CS->OscillationDuration = 0.25;
-	CS->RotOscillation = RotOscillation;
-	CS->LocOscillation = LocOscillation;
-	CS->FOVOscillation = FOVOscillation;
-	CS->AnimPlayRate= 1.0f;
-	CS->AnimScale = 1.0f;
-	CS->AnimBlendInTime = 0.2f;
-	CS->AnimBlendOutTime = 0.2f;*/
-
-	//CS->StartShake(controller->PlayerCameraManager, 1.0f, ECameraShakePlaySpace::CameraLocal);
-
-
 	if(IsValid(CameraShake))
 	{
-
+		//UGameplayStatics::GetPlayerController(Character->GetWorld(), 0)->ClientPlayCameraShake(CameraShake);
 		controller->PlayerCameraManager->StartCameraShake(CameraShake);
 	}
-
-
-	  
-	
-
 }

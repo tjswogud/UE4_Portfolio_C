@@ -28,17 +28,16 @@ void UCBTService_Boss::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMe
 	UCAIBehaviorComponent* aiState = CHelpers::GetComponent<UCAIBehaviorComponent>(boss);
 	AHumanType* target = Cast<ACPlayer>(aiState->GetTarget());
 
+	if (!target)
+		return;
+
 	float targetDistance = boss->GetDistanceTo(target);
 
 	BossDistance = aiState->BossDistanceKey;
 
-	/*UBlackboardComponent* BB = OwnerComp.GetBlackboardComponent();
-	BB->SetValueAsFloat(BossDistance, targetDistance);*/
-	
 	controller->GetBlackboardComponent()->SetValueAsFloat(BossDistance, targetDistance);
-	//OwnerComp.GetBlackboardComponent()->SetValueAsFloat(BossDistance, targetDistance);
 
-	CLog::Print(target);
+	//CLog::Print(target);
 	CLog::Print(targetDistance);
 	//CLog::Print(BossDistance);
 

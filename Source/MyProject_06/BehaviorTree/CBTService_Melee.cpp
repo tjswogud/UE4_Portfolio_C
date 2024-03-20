@@ -34,7 +34,6 @@ void UCBTService_Melee::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeM
 	}
 
 	ACharacter* target = aiState->GetTarget();
-
 	if (target == nullptr)
 	{
 		// 타겟이 없으면, Patrol로 타겟을 찾게 된다
@@ -42,6 +41,21 @@ void UCBTService_Melee::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeM
 
 		return;
 	}
+
+	//AActor* waitPoint = aiState->GetWaitPoint();
+	//if (waitPoint)
+	//{
+	//	aiState->SetWaitPointMode();
+
+	//	ai->GetWorld()->GetTimerManager().SetTimer(TimerHandle, [=]()
+	//		{
+	//			// 딜레이 후 실행할 코드 작성
+	//			aiState->SetPatrolMode();
+
+	//		}, 5.0f, false);
+
+	//	return;
+	//}
 
 	// 범위 안에 들어왓다면,
 	float distance = ai->GetDistanceTo(target);

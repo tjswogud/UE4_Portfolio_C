@@ -89,8 +89,8 @@ void UCDoAction_Combo::OnAttachmentBeginOverlap(ACharacter* InAttacker, AActor* 
 	for (ACharacter* hitted : Hitted)
 		CheckTrue(hitted == InOther);
 
-	Hitted.AddUnique(InOther);
-
+	AHumanType* Human = Cast<AHumanType>(InOther);
+	
 	if(Cast<ACPlayer>(OwnerCharacter))
 	{
 		if(!InUseSkill)
@@ -111,7 +111,16 @@ void UCDoAction_Combo::OnAttachmentBeginOverlap(ACharacter* InAttacker, AActor* 
 		}
 	}
 
-	LocalHitData.SendDamage(InAttacker, InAttackCauser, InOther);
+	if (Human != nullptr)
+	{
+		if (OwnerCharacter->GetTeamID() != Human->GetTeamID())
+		{
+			LocalHitData.SendDamage(InAttacker, InAttackCauser, Human);
+			return;
+		}
+	}
+
+	//LocalHitData.SendDamage(InAttacker, InAttackCauser, InOther);
 }
 
 void UCDoAction_Combo::OnAttachmentEndCollision()

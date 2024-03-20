@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "CPlayer.h"
 #include "GameFramework/Character.h"
 #include "Character/HumanType.h"
 #include "Component/CAIBehaviorComponent.h"

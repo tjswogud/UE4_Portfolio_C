@@ -56,7 +56,7 @@ void UCSubAction_Bow::Tick_Implementation(float InDeltaTime)
 	{
 		if (
 			UKismetSystemLibrary::LineTraceSingleForObjects(Owner->GetWorld(), Cast<ACPlayer>(Owner)->CameraLocation + UKismetMathLibrary::GetForwardVector(Cast<ACPlayer>(Owner)->CameraRotator) * 500.0f, Cast<ACPlayer>(Owner)->CameraLocation + UKismetMathLibrary::GetForwardVector(Cast<ACPlayer>(Owner)->CameraRotator) * 3000.0f,
-				objects, false, ignores, EDrawDebugTrace::ForOneFrame, Result, true))
+				objects, false, ignores, EDrawDebugTrace::None, Result, true))
 		{
 			IsblockingHit = true;
 			Bow_Attachment->UserWidget->SetColorAndOpacity(FLinearColor::Red);

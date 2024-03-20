@@ -21,8 +21,8 @@ public:
 	UPROPERTY(EditAnywhere, Category = "DataAsset")
 		class UCWeaponAsset* DataAssets[(int32)EWeaponType::Max];
 
-private:
-	UPROPERTY(EditAnywhere, Category = "Weapon")
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = "Weapon")
 		EWeaponType Type = EWeaponType::Max;
 
 public:
@@ -33,7 +33,6 @@ public:
 	FORCEINLINE bool IsWarpMode() { return Type == EWeaponType::Warp; }
 	FORCEINLINE bool IsAroundMode() { return Type == EWeaponType::Around; }
 	FORCEINLINE bool IsBowMode() { return Type == EWeaponType::Bow; }
-
 
 	FORCEINLINE UCWeaponAsset** GetDataAssets() { return DataAssets; }
 
@@ -61,9 +60,9 @@ private:
 public:
 	UFUNCTION(BlueprintCallable)
 		class ACAttachment* GetAttachment();
-	class UCEquipment* GetEquipment();
-	class UCDoAction* GetDoAction();
-	class UCSubAction* GetSubAction();
+		class UCEquipment* GetEquipment();
+		class UCDoAction* GetDoAction();
+		class UCSubAction* GetSubAction();
 
 public:
 	void SetUnarmedMode();

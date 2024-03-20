@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Character/HumanType.h"
+#include "Component/CAIBehaviorComponent.h"
 #include "CEnemy.generated.h"
 
 UCLASS()
@@ -13,6 +14,10 @@ class MYPROJECT_06_API ACEnemy : public AHumanType
 private:
 	UPROPERTY(EditAnywhere, Category = "Color")
 		FLinearColor OriginColor = FLinearColor::White;
+
+public:
+	UPROPERTY(BlueprintReadWrite)
+		EAIStateType AIState = EAIStateType::Max;
 
 public:
 	ACEnemy();

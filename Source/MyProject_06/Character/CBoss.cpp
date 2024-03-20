@@ -78,7 +78,7 @@ void ACBoss::Hitted()
 	{
 		FHitData* data = Damage.Event->HitData;
 
-		data->PlayMontage(this);
+		//data->PlayMontage(this);
 		data->PlayHitStop(GetWorld());
 		data->PlaySoundWave(this);
 		data->PlayEffect(GetWorld(), GetActorLocation(), GetActorRotation());

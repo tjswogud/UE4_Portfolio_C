@@ -12,13 +12,16 @@ ACEnemy_AI::ACEnemy_AI()
 
 	CHelpers::CreateComponent<UWidgetComponent>(this, &LabelWidget, "Label", GetMesh());
 	CHelpers::CreateActorComponent<UCAIBehaviorComponent>(this, &Behavior, "Behavior");
-
+	CHelpers::CreateComponent<UWidgetComponent>(this, &TargetWidget, "TargetWidget", this->GetCapsuleComponent(), "TargetFocus");
+	
 	TSubclassOf<UCUserWidget_Label> labelClass;
 	CHelpers::GetClass<UCUserWidget_Label>(&labelClass, "WidgetBlueprint'/Game/Widgets/WB_Label.WB_Label_C'");
 	LabelWidget->SetWidgetClass(labelClass);
 	LabelWidget->SetRelativeLocation(FVector(0, 0, 220));
 	LabelWidget->SetDrawSize(FVector2D(120, 0));
 	LabelWidget->SetWidgetSpace(EWidgetSpace::Screen);
+
+	TargetWidget->SetVisibility(false);
 }
 
 void ACEnemy_AI::BeginPlay()
@@ -38,6 +41,8 @@ void ACEnemy_AI::BeginPlay()
 void ACEnemy_AI::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	TargetWidget->SetWorldLocation(this->GetMesh()->GetSocketLocation("Chest"));
 
 	UCUserWidget_Label* label = Cast<UCUserWidget_Label>(LabelWidget->GetUserWidgetObject());
 

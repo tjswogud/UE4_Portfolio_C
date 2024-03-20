@@ -23,7 +23,6 @@ UCExecuteComponent::UCExecuteComponent()
 
 }
 
-
 void UCExecuteComponent::BeginPlay()
 {
 	Super::BeginPlay();
@@ -56,7 +55,6 @@ void UCExecuteComponent::BeginPlay()
 	}
 }
 
-
 void UCExecuteComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
@@ -71,7 +69,7 @@ void UCExecuteComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAc
 
 	if (Owner->GetStatus()->GetPlaceType() == EPlaceType::InAir && (Owner->GetState()->IsIdleMode() || Owner->GetState()->IsJumpMode()))
 	{
-		UKismetSystemLibrary::BoxTraceSingleForObjects(GetWorld(), Owner->GetCapsuleComponent()->GetComponentLocation(), FVector(Owner->GetCapsuleComponent()->GetComponentLocation().X, Owner->GetCapsuleComponent()->GetComponentLocation().Y, Owner->GetCapsuleComponent()->GetComponentLocation().Z - 2000.0f), FVector(200, 200, 0.0f), FRotator::ZeroRotator, objects, false, ignores, EDrawDebugTrace::ForOneFrame, OutHitForAir, true);
+		UKismetSystemLibrary::BoxTraceSingleForObjects(GetWorld(), Owner->GetCapsuleComponent()->GetComponentLocation(), FVector(Owner->GetCapsuleComponent()->GetComponentLocation().X, Owner->GetCapsuleComponent()->GetComponentLocation().Y, Owner->GetCapsuleComponent()->GetComponentLocation().Z - 2000.0f), FVector(200, 200, 0.0f), FRotator::ZeroRotator, objects, false, ignores, EDrawDebugTrace::None, OutHitForAir, true);
 
 	}
 	
@@ -81,7 +79,6 @@ void UCExecuteComponent::PlayGroundExecution()
 {
  	if (CheckCanGroundExecute())
 	{
-
 		/*Owner->SetActorLocation(HitResult.ImpactPoint);
 		Owner->SetActorRotation(UKismetMathLibrary::FindLookAtRotation(Owner->GetActorLocation(), Victim->GetActorLocation()));
 
@@ -98,7 +95,6 @@ void UCExecuteComponent::PlayGroundExecution()
 		Data.WeaponType = Owner->GetWeapons()->GetCurWeaponType();
 		Data.ExecutePlace = place;
 		Data.IsSneak = Owner->GetState()->IsSneakMode();
-
 
 		int indexnum = 0;
 
@@ -123,13 +119,11 @@ void UCExecuteComponent::PlayGroundExecution()
 
 		//Victim->GetMontages()->PlayExecuteMode(Data.WeaponType, Data.ExecutePlace, Data.index, Data.IsSneak);
 	}
-
 }
 
 bool UCExecuteComponent::CheckCanGroundExecute()
 {
 	if (Owner->GetWeapons()->GetCurWeapon()->ExecuteDataTable == nullptr) return false;
-
 
 	if (Owner != nullptr && !Owner->GetState()->IsExecuteMode() )
 	{
@@ -142,15 +136,12 @@ bool UCExecuteComponent::CheckCanGroundExecute()
 
 		bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, LineStart, LineEnd, ECC_Pawn,  Params);
 
-		DrawDebugLine(Owner->GetWorld(), LineStart, LineEnd, FColor::Red, false, 1.0f, 0, 1.0f);
-
+		//DrawDebugLine(Owner->GetWorld(), LineStart, LineEnd, FColor::Red, false, 1.0f, 0, 1.0f);
 
 		//DrawDebugLine(GetWorld(), LineStart, LineEnd, FColor::Green, false, 1.0f);
 
 		if (HitResult.bBlockingHit)
 		{
-
-
 			//if (Cast<ACEnemy>(HitResult.GetActor())) //적인지 아닌지
 			//{
 			//	Victim = Cast<ACEnemy>(HitResult.GetActor());
@@ -173,13 +164,10 @@ bool UCExecuteComponent::CheckCanGroundExecute()
 			return false;
 		}
 
-
 		return false;
 	}
 
 	return false;
-
-	
 }
 
 void UCExecuteComponent::PlayAirExecution()
@@ -196,7 +184,6 @@ void UCExecuteComponent::PlayAirExecution()
 
 	Owner->GetCapsuleComponent()->SetCollisionProfileName("Execute");
 
-
 	for (int i = 0; i < ExecuteDatas.Num(); i++)
 	{
 		if (ExecuteDatas[i].WeaponType == Owner->GetWeapons()->GetCurWeaponType() && ExecuteDatas[i].ExecutePlace == Data.ExecutePlace && ExecuteDatas[i].index == Data.index && ExecuteDatas[i].IsSneak == Data.IsSneak)
@@ -209,13 +196,9 @@ void UCExecuteComponent::PlayAirExecution()
 		}
 	}
 
-
-
 	//Victim->GetMontages()->PlayExecuteMode(Data.WeaponType, Data.ExecutePlace, Data.index, Data.IsSneak);
 
 	GetWorld()->GetTimerManager().UnPauseTimer(AirExeHandle);
-
-
 }
 
 bool UCExecuteComponent::CheckCanAirExecute()
@@ -263,7 +246,6 @@ bool UCExecuteComponent::DecideExecutePlace(FVector InImpactNormal)
 
 	//maximum = FMath::Max(front, behind);
 
-
 	if(maximum < 0.7)
 	{
 		return false;
@@ -294,8 +276,6 @@ bool UCExecuteComponent::DecideExecutePlace(FVector InImpactNormal)
 
 		return true;
 	}
-
-
 }
 
 void UCExecuteComponent::MoveToTarget()

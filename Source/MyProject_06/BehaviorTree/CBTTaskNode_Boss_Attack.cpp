@@ -27,10 +27,19 @@ EBTNodeResult::Type UCBTTaskNode_Boss_Attack::ExecuteTask(UBehaviorTreeComponent
 	CheckNullResult(weapon, EBTNodeResult::Failed);
 
 	controller->SetFocus(target);
-	ai->PlayAnimMontage(Attack_Montage, 1);
 
-	//controller->StopMovement();
-	//weapon->DoAction();
+	if (aiState->IsBossAttackMode())
+	{
+		ai->PlayAnimMontage(Attack_Montage, 1);
+
+		ai->GetWorld()->GetTimerManager().SetTimer(TimerHandle, [=]()
+		{
+			// 딜레이 후 실행할 코드 작성
+			//aiState->SetBossApproachMode();
+			aiState->SetBossChangedTypeMode();
+
+		}, 3.0f, false);
+	}
 
 	return EBTNodeResult::InProgress;
 }
@@ -42,9 +51,30 @@ void UCBTTaskNode_Boss_Attack::TickTask(UBehaviorTreeComponent& OwnerComp, uint8
 	//FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 }
 
-EBTNodeResult::Type UCBTTaskNode_Boss_Attack::AbortTask(UBehaviorTreeComponent& Owner0Comp, uint8* NodeMemory)
+EBTNodeResult::Type UCBTTaskNode_Boss_Attack::AbortTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	Super::AbortTask(Owner0Comp, NodeMemory);
+	Super::AbortTask(OwnerComp, NodeMemory);
 
-	return EBTNodeResult::Succeeded;
+	//ACAIController* controller = Cast<ACAIController>(OwnerComp.GetOwner());
+	//ACBoss_AI* boss = Cast<ACBoss_AI>(controller->GetPawn());
+	//UCAIBehaviorComponent* aiState = CHelpers::GetComponent<UCAIBehaviorComponent>(boss);
+
+	//aiState->SetBossApproachMode();
+
+	//ACAIController* controller = Cast<ACAIController>(OwnerComp.GetOwner());
+	//ACBoss_AI* ai = Cast<ACBoss_AI>(controller->GetPawn());
+	//UCAIBehaviorComponent* aiState = CHelpers::GetComponent<UCAIBehaviorComponent>(ai);
+	//AHumanType* target = Cast<ACPlayer>(aiState->GetTarget());
+
+	//ai->GetWorld()->GetTimerManager().SetTimer(TimerHandle, [=]()
+	//	{
+	//		
+	//		aiState->SetBossApproachMode();
+
+	//	}, 3.0f, false);
+
+	//return EBTNodeResult::Succeeded;
+
+	return Super::AbortTask(OwnerComp, NodeMemory);
+
 }

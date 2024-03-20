@@ -1,9 +1,11 @@
 #include "Component/CTargetComponent.h"
 #include "Global.h"
+#include "Character/CBoss.h"
+#include "Character/CBoss_AI.h"
 #include "Character/CEnemy.h"
+#include "Character/CEnemy_AI.h"
 #include "Containers/Map.h"
 #include "Character/HumanType.h"
-//#include "Character/CEnemy.h"
 
 UCTargetComponent::UCTargetComponent()
 {
@@ -230,24 +232,24 @@ void UCTargetComponent::Begin_Targeting()
 
 void UCTargetComponent::End_Targeting()
 {
-    /*if(Cast<ACEnemy>(Target))
+    if(Cast<ACEnemy>(Target))
     {
-        Cast<ACEnemy>(Target)->TargetWidget->SetVisibility(false);
+        Cast<ACEnemy_AI>(Target)->TargetWidget->SetVisibility(false);
         Target = nullptr;
-    }*/
+    }
 }
 
 void UCTargetComponent::ChangeTarget(AHumanType* Candidate)
 {
     if (IsValid(Candidate))
     {
-        /*if(IsValid(Target))
+        if(IsValid(Target))
         {
-            Cast<ACEnemy>(Target)->TargetWidget->SetVisibility(false);
+            Cast<ACEnemy_AI>(Target)->TargetWidget->SetVisibility(false);
         }
         
         Target = Candidate;
-        Cast<ACEnemy>(Target)->TargetWidget->SetVisibility(true);*/
+        Cast<ACEnemy_AI>(Target)->TargetWidget->SetVisibility(true);
         
         if (Candidate->GetState()->IsDeadMode())
             End_Targeting();

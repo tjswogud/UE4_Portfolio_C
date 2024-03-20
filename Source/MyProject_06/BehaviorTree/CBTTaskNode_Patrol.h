@@ -14,10 +14,10 @@ private:
         bool bDebugMode; // 디버깅 모드 on, off 선택
 
     UPROPERTY(EditAnywhere, Category = "Patrol")
-        float AcceptanceDistance = 20; // 일정 거리에 들어오면 도달했다고 간주,
+        float AcceptanceDistance = 10; // 일정 거리에 들어오면 도달했다고 간주,
 
     UPROPERTY(EditAnywhere, Category = "Random")
-        float RandomRadius = 1500; // 순찰 경로 없을때 랜덤 반경 범위
+        float RandomRadius = 2000; // 순찰 경로 없을때 랜덤 반경 범위
 
 public:
 	UCBTTaskNode_Patrol();

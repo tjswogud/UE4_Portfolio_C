@@ -11,11 +11,15 @@ class MYPROJECT_06_API UCBTService_Melee : public UBTService
 
 private:
 	UPROPERTY(EditAnywhere, Category = "Action")
-		float ActionRange = 150;
+		float ActionRange = 250;
 
 public:
 	UCBTService_Melee();
 
 protected:
 	void TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
+
+private:
+	FTimerHandle TimerHandle;
+
 };

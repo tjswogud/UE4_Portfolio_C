@@ -7,7 +7,7 @@
 UENUM(BlueprintType)
 enum class EAIStateType : uint8
 {
-	Wait = 0, Approach, Action, Patrol, Hitted, Avoid, Dead, Max,
+	Wait = 0, Approach, WaitPoint ,Action, Patrol, Hitted, Avoid, Dead, Max,
 };
 
 UENUM(BlueprintType)
@@ -43,6 +43,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Key")
 		FName AIStateBossType = "BossState";
 
+	UPROPERTY(EditAnywhere, Category = "Key")
+		FName WaitPointKey = "WaitPoint";
+
 public:
 	EAIStateType GetType();
 	EAIStateBossType GetBossType();
@@ -50,6 +53,7 @@ public:
 public:
 	bool IsWaitMode();
 	bool IsApproachMode();
+	bool IsWaitPointMode();
 	bool IsActionMode();
 	bool IsPatrolMode();
 	bool IsHittedMode();
@@ -79,6 +83,8 @@ public:
 public:
 	class ACharacter* GetTarget();
 
+	class AActor* GetWaitPoint();
+
 public:
 	FVector GetPatrolLocation();
 	void SetPatrolLocation(const FVector& InLocation);
@@ -90,6 +96,7 @@ public:
 public:
 	void SetWaitMode();
 	void SetApproachMode();
+	void SetWaitPointMode();
 	void SetActionMode();
 	void SetPatrolMode();
 	void SetHittedMode();

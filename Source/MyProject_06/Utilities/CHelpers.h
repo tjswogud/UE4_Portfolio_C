@@ -4,6 +4,7 @@
 #include "NiagaraSystem.h"
 #include "NiagaraFunctionLibrary.h"
 #include "AddOn/CGhostTrail.h"
+#include "Character/HumanType.h"
 #include "Components/CapsuleComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
@@ -18,9 +19,6 @@
 
 #define CheckNull(x) { if((x) == nullptr) return;}
 #define CheckNullResult(x, y) { if((x) == nullptr) return y;}
-
-
-
 
 #define CreateTextRender() \
 {  \
@@ -171,8 +169,6 @@ public:
 
 	}
 
-	
-
 	static FVector GetVector2D(FVector inVector)
 	{
 		return FVector(inVector.X, inVector.Y, 0);
@@ -193,7 +189,6 @@ public:
 		CheckNullResult(InClass, nullptr);
 		CheckNullResult(InOwner, nullptr);
 
-
 		FActorSpawnParameters params;
 		params.Owner = InOwner;
 		params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
@@ -201,10 +196,28 @@ public:
 		FVector location = InOwner->GetActorLocation();
 		location.Z -= InOwner->GetCapsuleComponent()->GetScaledCapsuleHalfHeight();
 
-
 		FTransform transform;
 		transform.SetTranslation(location);
 
 		return InOwner->GetWorld()->SpawnActor<ACGhostTrail>(InClass, transform, params);
+	}
+
+	static bool IsSameTeam(ACharacter* InOwner, ACharacter* InEnemy)
+	{
+		CheckNullResult(InOwner, false);
+		CheckNullResult(InEnemy, false);
+
+		AHumanType* Owner = Cast<AHumanType>(InOwner);
+		AHumanType* Enemy = Cast<AHumanType>(InEnemy);
+
+		int32 OwnerID = Owner->GetTeamID();
+		int32 EnemyID = Enemy->GetTeamID();
+
+		if (OwnerID == EnemyID)
+		{
+			return true;
+		}
+
+		return false;
 	}
 };

@@ -23,6 +23,11 @@ ACharacter* UCAIBehaviorComponent::GetTarget()
 	return Cast<ACharacter>(Blackboard->GetValueAsObject(TargetKey));
 }
 
+AActor* UCAIBehaviorComponent::GetWaitPoint()
+{
+	return Cast<AActor>(Blackboard->GetValueAsObject(WaitPointKey));
+}
+
 FVector UCAIBehaviorComponent::GetPatrolLocation()
 {
 	return Blackboard->GetValueAsVector(PatrolLocationKey);
@@ -61,6 +66,11 @@ bool UCAIBehaviorComponent::IsWaitMode()
 bool UCAIBehaviorComponent::IsApproachMode()
 {
 	return GetType() == EAIStateType::Approach;
+}
+
+bool UCAIBehaviorComponent::IsWaitPointMode()
+{
+	return GetType() == EAIStateType::WaitPoint;
 }
 
 bool UCAIBehaviorComponent::IsActionMode()
@@ -146,6 +156,11 @@ void UCAIBehaviorComponent::SetWaitMode()
 void UCAIBehaviorComponent::SetApproachMode()
 {
 	ChangeType(EAIStateType::Approach);
+}
+
+void UCAIBehaviorComponent::SetWaitPointMode()
+{
+	ChangeType(EAIStateType::WaitPoint);
 }
 
 void UCAIBehaviorComponent::SetActionMode()

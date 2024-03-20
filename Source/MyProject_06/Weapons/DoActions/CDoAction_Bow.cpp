@@ -289,7 +289,7 @@ void UCDoAction_Bow::Shoot(bool IsSkillShoot, FHitData* HitData, FVector InVeloc
 		}
 	}
 
-	DrawDebugLine(OwnerCharacter->GetWorld(), OwnerCharacter->GetMesh()->GetSocketLocation("Hand_Bow_Right_Arrow"), OwnerCharacter->GetMesh()->GetSocketLocation("Hand_Bow_Right_Arrow") + direction * length, FColor::Red, false, 5.0f, 0.0f, 1.0f);
+	//DrawDebugLine(OwnerCharacter->GetWorld(), OwnerCharacter->GetMesh()->GetSocketLocation("Hand_Bow_Right_Arrow"), OwnerCharacter->GetMesh()->GetSocketLocation("Hand_Bow_Right_Arrow") + direction * length, FColor::Red, false, 5.0f, 0.0f, 1.0f);
 
 }
 

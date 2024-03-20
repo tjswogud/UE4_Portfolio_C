@@ -22,10 +22,10 @@ void UCAN_LookAtTarget::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBa
 	AHumanType* Owner = Cast<AHumanType>(MeshComp->GetOwner());
 	CheckNull(Owner);
 
+	Target = Cast<AHumanType>(Cast<AHumanType>(Owner->GetController()));
 
 	/*if (Cast<ACEnemy_Melee>(Owner))
 	{
-
 		Target = Cast<AHumanType>(Cast<ACEnemy_AIController>(Owner->GetController())->GetBlackboardComponent()->GetValueAsObject(ACEnemy_AIController::Target));
 	}
 	else if (Cast<ACEnemy_Range>(Owner))
@@ -43,16 +43,11 @@ void UCAN_LookAtTarget::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBa
 	if(bUsePitchAndRoll)
 	{
 		Rotator = UKismetMathLibrary::FindLookAtRotation(Owner->GetActorLocation(), Target->GetActorLocation());
-
 	}
 	else
 	{
-		
 		Rotator = UKismetMathLibrary::FindLookAtRotation(CHelpers::GetVector2D(Owner->GetActorLocation()), CHelpers::GetVector2D(Target->GetActorLocation()));
 	}
-
-
-
 
 	Owner->SetActorRotation(Rotator);
 }

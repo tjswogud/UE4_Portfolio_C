@@ -36,15 +36,12 @@ void UCAN_Move::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Anim
 		Owner->GetCharacterMovement()->Velocity = FVector::ZeroVector;
 	}
 
-	switch (MoveType) {
+	switch (MoveType)
+	{
 	case EMoveType::Velocity:
 		Owner->GetCharacterMovement()->Velocity = Power * DirectVector;
-
-
 		break;
 	case EMoveType::Launch:
-
-
 		Owner->LaunchCharacter(Power * DirectVector, IsOverride, IsOverride);
 		//Owner->LaunchCharacter(Power * DirectVector, false, false);
 
