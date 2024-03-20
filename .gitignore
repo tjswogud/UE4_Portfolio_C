@@ -72,3 +72,10 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+# Asset
+Content/Egypt_Ruins_Environment/*
+Content/AdvancedMagicFX01/*
+Content/AdvancedMagicFX02/*
+Content/AdvancedMagicFX03/*
+Content/AdvancedMagicFX04/*
